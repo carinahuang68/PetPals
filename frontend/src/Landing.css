@@ -42,3 +42,21 @@
   transform: translateY(-3px);
   box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
 }
+
+.landing-image {
+    width:800px;        /* adjust size here */
+    max-width: 100%;
+    margin: 20px auto;  /* centers + spacing */
+    display: block;     /* important for margin auto */
+  }
+  
+  .description-textarea {
+    width: 100%;        /* full width of the container */
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;   /* allows vertical resizing only */
+    box-sizing: border-box; /* ensures padding is included in width */
+  }
+  
