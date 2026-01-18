@@ -4,7 +4,7 @@ import Pal from '../models/Pal.js';
 export const addNewPal = async (req, res) => {
     const pal = req.body; // user will send this data
 
-    if (!pal.name || !pal.image ) {
+    if (!pal.name || !pal.image || !palData.personality?.description) {
         return res.status(400).json({success: false, message: "Please provide all fields"});
     }
 
