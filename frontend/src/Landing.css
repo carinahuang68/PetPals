@@ -23,41 +23,20 @@
   margin-bottom: 50px;
 }
 
-.cta-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.cta-btn {
-  padding: 15px 40px;
-  font-size: 1.1rem;
+.make-petpal-btn {
+  padding: 20px 60px;
+  font-size: 1.3rem;
   border: none;
   border-radius: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
-.login-btn {
-  background-color: #007bff;
-  color: white;
-}
-
-.login-btn:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-}
-
-.signup-btn {
-  background-color: #28a745;
-  color: white;
-}
-
-.signup-btn:hover {
-  background-color: #218838;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+.make-petpal-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
 }

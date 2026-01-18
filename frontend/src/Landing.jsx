@@ -10,20 +10,12 @@ export default function Landing() {
         <h1>🐾 Welcome to PetPals</h1>
         <p className="tagline">Turn your plushie into a personalized AI companion</p>
         
-        <div className="cta-buttons">
-          <button 
-            className="cta-btn login-btn"
-            onClick={() => navigate('/login')}
-          >
-            Login
-          </button>
-          <button 
-            className="cta-btn signup-btn"
-            onClick={() => navigate('/register')}
-          >
-            Sign Up
-          </button>
-        </div>
+        <button 
+          className="cta-btn make-petpal-btn"
+          onClick={() => navigate('/customize')}
+        >
+          Make Your Own PetPal!
+        </button>
       </div>
     </div>
   );
