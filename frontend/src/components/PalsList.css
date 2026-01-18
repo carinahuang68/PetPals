@@ -1,8 +1,9 @@
 .pals-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 2000px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 10px 20px;
+  background: #FFFAD6;
 }
 
 .pals-container h2 {
@@ -36,10 +37,11 @@
 }
 
 .pal-card {
-  background: white;
+  position: relative;
+  background: #FEFDED;
   border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+  box-shadow: 0 2px 8px rgba(236, 227, 227, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -47,6 +49,128 @@
 .pal-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.delete-pal-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: #d58686b3;
+    color: white;
+
+    font-size: 16px;
+    line-height: 1;
+
+    cursor: pointer;
+    z-index: 2;
+}
+
+.delete-pal-btn:hover {
+    background: #ac4949b3;
+}
+
+
+.info-pal-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #9fc2d9;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-pal-btn:hover {
+    background: #81acc8;
+}
+
+.pal-info-popover {
+    position: absolute;
+    top: 40px;
+    right: 8px;
+
+    width: 240px;
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    z-index: 5;
+
+    font-size: 0.85rem;
+    color: #333;
+}
+
+.update-pal-btn {
+    margin-top: 10px;
+    width: 100%;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.update-pal-btn:hover {
+    opacity: 0.9;
+}
+
+/* Text layout */
+.pal-info-popover strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+.popover-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.popover-description {
+    margin: 8px 0;
+    color: #555;
+    font-size: 0.85rem;
+}
+
+/* Trait chips */
+.popover-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.trait-chip {
+    background: #f1f3ff;
+    color: #4a5bdc;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
 }
 
 .pal-image {
