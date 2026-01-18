@@ -8,7 +8,7 @@ export default function Landing() {
     <div className="landing-container">
       <div className="landing-content">
         <h1>🐾 Welcome to PetPals</h1>
-        <img src="/petpals.png" alt="" />
+        {/* <img src="/petpals.png" alt="PetPals logo" /> */}
         <p className="tagline">Turn your plushie into a personalized AI companion</p>
         
         <button 

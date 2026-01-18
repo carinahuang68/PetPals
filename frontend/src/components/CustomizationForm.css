@@ -15,3 +15,7 @@
 .trait-checkbox input {
   cursor: pointer;
 }
+
+.customization-form {
+  background-color: #FFFAD6;
+}
