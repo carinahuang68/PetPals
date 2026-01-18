@@ -13,8 +13,9 @@ export default function UpdatePal() {
         name: "",
         role: "",
         personality: {
+            background: "",
             description: "",
-            tone: "",
+            speakingStyle: "",
             traits: []
         }
     });
@@ -130,6 +131,15 @@ export default function UpdatePal() {
                 </label>
 
                 <label>
+                    Tone
+                    <input
+                        name="personality.background"
+                        value={formData.personality.background}
+                        onChange={handleChange}
+                    />
+                </label>
+
+                <label>
                     Personality Description
                     <textarea
                         name="personality.description"
@@ -138,20 +148,21 @@ export default function UpdatePal() {
                     />
                 </label>
 
-                <label>
-                    Tone
-                    <input
-                        name="personality.tone"
-                        value={formData.personality.tone}
-                        onChange={handleChange}
-                    />
-                </label>
 
                 <label>
                     Traits (comma separated)
                     <input
                         value={formData.personality.traits.join(", ")}
                         onChange={handleTraitsChange}
+                    />
+                </label>
+
+                <label>
+                    Tone
+                    <input
+                        name="personality.speakingStyle"
+                        value={formData.personality.speakingStyle}
+                        onChange={handleChange}
                     />
                 </label>
 
