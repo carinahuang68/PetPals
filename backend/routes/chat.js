@@ -72,7 +72,7 @@ router.post("/:palId/message", async (req, res) => {
     Conversation instructions: ${convo_instructions}`.trim();
 
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-3-flash",
+      model: "gemini-3-flash-preview",
       systemInstruction: systemPrompt
     });
 
