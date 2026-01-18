@@ -20,9 +20,6 @@ const palSchema = new mongoose.Schema({
         traits: {
             type: [String],
             default: []
-        },
-        tone: {
-            type: String
         }
     },
     commands: {  // what they should do for me
