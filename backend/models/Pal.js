@@ -22,14 +22,14 @@ const palSchema = new mongoose.Schema({
             default: []
         }
     },
-    commands: {  // what they should do for me
-        type: [String], 
-        default: [] // "go to sleep at 9pm", "take meds"
-    },
-    notificationsEnabled: {
-        type: Boolean,
-        default: false
-    },
+    // commands: {  // what they should do for me
+    //     type: [String], 
+    //     default: [] // "go to sleep at 9pm", "take meds"
+    // },
+    // notificationsEnabled: {
+    //     type: Boolean,
+    //     default: false
+    // },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
