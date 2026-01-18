@@ -131,15 +131,6 @@ export default function UpdatePal() {
                 </label>
 
                 <label>
-                    Tone
-                    <input
-                        name="personality.background"
-                        value={formData.personality.background}
-                        onChange={handleChange}
-                    />
-                </label>
-
-                <label>
                     Personality Description
                     <textarea
                         name="personality.description"

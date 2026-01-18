@@ -135,8 +135,8 @@ export default function PalsList() {
                                 )}
 
                                 <div className="popover-row">
-                                    <span>Tone:</span>
-                                    <span>{pal.personality?.tone}</span>
+                                    <span>Speaking Style:</span>
+                                    <span>{pal.personality?.speakingStyle}</span>
                                 </div>
                                 <button
                                     className="update-pal-btn"
