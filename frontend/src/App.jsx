@@ -6,6 +6,7 @@ import PalsList from './components/PalsList'
 import ChatPage from './components/ChatPage'
 import Landing from './Landing'
 import './App.css'
+import UpdatePal from './components/UpdatePal'
 
 function AppContent() {
   const [companion, setCompanion] = useState(null)
@@ -26,6 +27,7 @@ function AppContent() {
           <Route path="/" element={<Landing />} />
           <Route path="/pals" element={<PalsList />} />
           <Route path="/chat/:palId" element={<ChatPage />} />
+          <Route path="/pals/:id/updatePal" element={<UpdatePal />} />
           <Route 
             path="/customize" 
             element={

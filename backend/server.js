@@ -13,7 +13,7 @@ app.use(express.static("public"));
 
 
 app.use(cors());
-app.use(express.json()); // allows us to accept JSON data in req.body
+app.use(express.json({ limit: '100mb' })); // allows us to accept JSON data in req.body
 
 app.use('/api/auth', authRoutes);
 app.use('/api/pals', palRoutes);

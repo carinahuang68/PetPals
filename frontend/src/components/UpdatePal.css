@@ -1,0 +1,42 @@
+.update-pal-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.update-pal-form label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.update-pal-form input,
+.update-pal-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.update-pal-form textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cancel-btn {
+    background: #eee;
+}
