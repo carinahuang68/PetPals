@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import CustomizationForm from './components/CustomizationForm'
 import ChatCompanion from './components/ChatCompanion'
 import PalsList from './components/PalsList'
+import ChatPage from './components/ChatPage'
 import Landing from './Landing'
 import './App.css'
 
@@ -24,6 +25,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/pals" element={<PalsList />} />
+          <Route path="/chat/:palId" element={<ChatPage />} />
           <Route 
             path="/customize" 
             element={

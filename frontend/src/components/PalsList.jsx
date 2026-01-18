@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PalsList.css';
 
 export default function PalsList() {
   const [pals, setPals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPals();
@@ -54,6 +56,12 @@ export default function PalsList() {
               <div className="pal-info">
                 <h3>{pal.name}</h3>
                 <p className="pal-role">{pal.role}</p>
+                <button 
+                  className="chat-btn"
+                  onClick={() => navigate(`/chat/${pal._id}`)}
+                >
+                  💬 Chat
+                </button>
               </div>
             </div>
           ))}

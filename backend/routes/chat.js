@@ -1,5 +1,5 @@
 import express from "express";
-import { protect } from "../middleware/auth.js";
+// import { protect } from "../middleware/auth.js";
 import Chat from "../models/Chat.js";
 import Pal from "../models/Pal.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -31,10 +31,10 @@ const prepareGeminiHistory = (chats) => {
 };
 
 // POST /api/ai/:palId/message
-router.post("/:palId/message", protect, async (req, res) => {
+router.post("/:palId/message", async (req, res) => {
   try {
     const { palId } = req.params;
-    const userId = req.user._id;
+    const userId = '000000000000000000000000'; // Default user ID
     const { message } = req.body;
 
     if (!message) return res.status(400).json({ error: "Message is required" });
@@ -64,20 +64,17 @@ router.post("/:palId/message", protect, async (req, res) => {
         - Use the user's message to guide your reply.`;
 
 
-    // 5️⃣ Initialize Gemini 2.5 Flash with System Instructions
-    const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.5-flash",
-      systemInstruction: {
-        role: "system",
-        parts: [{ text: `
-          Your role is ${pal.role}. 
-          Name: ${pal.name}.
-          Overall personality: ${pal.personality.description}. 
-          Traits: ${pal.personality.traits.join(", ")}.
+    // 5️⃣ Initialize Gemini Flash with System Instructions
+    const systemPrompt = `Your role is ${pal.role}. 
+    Name: ${pal.name}.
+    Overall personality: ${pal.personality.description}. 
+    Traits: ${pal.personality.traits.join(", ")}.
           Speaking Style: ${pal.personality.tone}.
-          Conversation intructions: ${convo_instructions}.
-        `.trim() }]
-      }
+    Conversation instructions: ${convo_instructions}`.trim();
+
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-3-flash",
+      systemInstruction: systemPrompt
     });
 
     // 6️⃣ Execute Chat
@@ -96,7 +93,17 @@ router.post("/:palId/message", protect, async (req, res) => {
     res.json({ aiMessage: aiReply, chatId: savedAiChat._id });
 
   } catch (err) {
-    console.error("Gemini Error:", err);
+    console.error("Chat Error Details:", {
+      message: err.message,
+      status: err.status,
+      stack: err.stack
+    });
+    
+    // Check if it's a 401 from Gemini API
+    if (err.message && err.message.includes('401')) {
+      return res.status(500).json({ error: "API key issue. Please check backend logs." });
+    }
+    
     res.status(500).json({ error: "The AI companion is resting. Try again shortly." });
   }
 });

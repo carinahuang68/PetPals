@@ -9,7 +9,7 @@ function CustomizationForm({ onCustomize }) {
     traits: [],
   });
   const [role, setRole] = useState('friend');
-  const [notificationPref, setNotificationPref] = useState('check-in');
+  // const [notificationPref, setNotificationPref] = useState('check-in');
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -58,7 +58,6 @@ function CustomizationForm({ onCustomize }) {
         image: preview,
         personality, 
         role, 
-        notificationsEnabled: notificationPref !== 'none'
       };
 
       const response = await fetch('http://localhost:3000/api/pals', {
@@ -72,7 +71,7 @@ function CustomizationForm({ onCustomize }) {
       }
 
       const newPal = await response.json();
-      onCustomize({ name, personality, role, notificationPref, photoUrl: preview });
+      onCustomize({ name, personality, role, photoUrl: preview });
       navigate('/pals');
     } catch (error) {
       console.error('Error creating pal:', error);
@@ -113,9 +112,9 @@ function CustomizationForm({ onCustomize }) {
         </div>
 
         <div className="form-group">
-          <label>Personality</label>
+          <label>Description</label>
           <textarea
-            placeholder="e.g., A warm and empathetic companion who loves to listen and provide comfort"
+            placeholder="Write a narrative of you and your companion's story!"
             value={personality.description}
             onChange={(e) => setPersonality(prev => ({ ...prev, description: e.target.value }))}
             rows="4"
@@ -146,15 +145,6 @@ function CustomizationForm({ onCustomize }) {
             <option value="therapist">Therapist</option>
             <option value="mentor">Mentor</option>
             <option value="adventure-buddy">Adventure Buddy</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>Notification Preference</label>
-          <select value={notificationPref} onChange={(e) => setNotificationPref(e.target.value)}>
-            <option value="check-in">Daily Check-in</option>
-            <option value="reminders">Periodic Reminders</option>
-            <option value="none">No Notifications</option>
           </select>
         </div>
 
