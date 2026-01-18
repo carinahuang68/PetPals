@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Pal from '../models.Pal.js';
+import Pal from '../models/Pal.js';
 
 export const addNewPal = async (req, res) => {
     const pal = req.body; // user will send this data
@@ -19,7 +19,7 @@ export const addNewPal = async (req, res) => {
     }
 }
 
-export const deleteAPal = async (req, res) => {
+export const deletePal = async (req, res) => {
     const {id} = req.params;
     console.log("ID to be deleted: ", id);
     const pal = await Pal.findById(id);
