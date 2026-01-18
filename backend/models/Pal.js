@@ -15,11 +15,15 @@ const palSchema = new mongoose.Schema({
     },
     personality: {
         description: {
-            type: String
+            type: String // Ex. A warm, slightly sarcastic friend who checks in daily and uses casual language.
         },
         traits: {
-            type: [String],
+            type: [String], // 
             default: []
+        },
+        tone: {
+            type: String,
+            default: "casual"
         }
     },
     // commands: {  // what they should do for me

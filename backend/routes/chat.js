@@ -72,8 +72,9 @@ router.post("/:palId/message", protect, async (req, res) => {
         parts: [{ text: `
           Your role is ${pal.role}. 
           Name: ${pal.name}.
-          Personality: ${pal.personality.description}. 
+          Overall personality: ${pal.personality.description}. 
           Traits: ${pal.personality.traits.join(", ")}.
+          Speaking Style: ${pal.personality.tone}.
           Conversation intructions: ${convo_instructions}.
         `.trim() }]
       }
