@@ -8,7 +8,7 @@ export const addNewPal = async (req, res) => {
         return res.status(400).json({success: false, message: "Please provide all fields"});
     }
 
-    const newPal = new Pal({...pal, createdBy: req.user._id});
+    const newPal = new Pal(pal);
 
     try {
         await newPal.save();
@@ -63,7 +63,8 @@ export const updatePal = async (req, res) => {
 
 export const getPals = async (req, res) => {
     try {
-        const pals = await Pal.find({createdBy: req.user._id});
+        // Get all pals
+        const pals = await Pal.find();
         res.status(200).json(pals);
     } catch (error) {
         console.error();

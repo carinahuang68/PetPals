@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import CustomizationForm from './components/CustomizationForm'
 import ChatCompanion from './components/ChatCompanion'
+import PalsList from './components/PalsList'
 import Landing from './Landing'
 import './App.css'
 
@@ -22,6 +23,7 @@ function AppContent() {
       <main className="app-main">
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/pals" element={<PalsList />} />
           <Route 
             path="/customize" 
             element={

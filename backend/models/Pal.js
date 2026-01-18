@@ -33,7 +33,7 @@ const palSchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        default: new mongoose.Types.ObjectId('000000000000000000000000')
     }
 }, {
     timestamps: true

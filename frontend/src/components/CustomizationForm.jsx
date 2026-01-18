@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CustomizationForm.css';
+
 function CustomizationForm({ onCustomize }) {
   const [name, setName] = useState('');
   const [personality, setPersonality] = useState({
@@ -9,6 +11,8 @@ function CustomizationForm({ onCustomize }) {
   const [role, setRole] = useState('friend');
   const [notificationPref, setNotificationPref] = useState('check-in');
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const traitOptions = ['helpful', 'funny', 'adventurous', 'wise', 'energetic', 'calm',  'constructive'];
 
@@ -32,7 +36,7 @@ function CustomizationForm({ onCustomize }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim()) {
       alert('Please enter a name for your companion!');
@@ -46,7 +50,36 @@ function CustomizationForm({ onCustomize }) {
       alert('Please describe your companion\'s personality!');
       return;
     }
-    onCustomize({ name, personality, role, notificationPref, photoUrl: preview });
+
+    setLoading(true);
+    try {
+      const palData = { 
+        name, 
+        image: preview,
+        personality, 
+        role, 
+        notificationsEnabled: notificationPref !== 'none'
+      };
+
+      const response = await fetch('http://localhost:3000/api/pals', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(palData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create pal');
+      }
+
+      const newPal = await response.json();
+      onCustomize({ name, personality, role, notificationPref, photoUrl: preview });
+      navigate('/pals');
+    } catch (error) {
+      console.error('Error creating pal:', error);
+      alert('Failed to create companion. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -125,8 +158,8 @@ function CustomizationForm({ onCustomize }) {
           </select>
         </div>
 
-        <button type="submit" className="submit-btn">
-          Create Companion
+        <button type="submit" className="submit-btn" disabled={loading}>
+          {loading ? 'Creating Companion...' : 'Create Companion'}
         </button>
       </form>
     </div>
