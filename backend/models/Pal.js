@@ -32,6 +32,11 @@ const palSchema = new mongoose.Schema({
     notificationsEnabled: {
         type: Boolean,
         default: false
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     }
 }, {
     timestamps: true
