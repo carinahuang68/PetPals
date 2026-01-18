@@ -1,7 +1,7 @@
 // const express = require('express');
 import express from 'express';
 import { connectDB } from './config/db.js';
-import palRoutes from './routes/pal.route.js';
+import palRoutes from './routes/pal.routes.js';
 import authRoutes from './routes/auth.js';
 import cors from 'cors';
 import path from 'path';
