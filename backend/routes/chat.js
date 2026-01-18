@@ -67,8 +67,9 @@ router.post("/:palId/message", async (req, res) => {
     // 5️⃣ Initialize Gemini Flash with System Instructions
     const systemPrompt = `Your role is ${pal.role}. 
     Name: ${pal.name}.
-    Personality: ${pal.personality.description}. 
+    Overall personality: ${pal.personality.description}. 
     Traits: ${pal.personality.traits.join(", ")}.
+          Speaking Style: ${pal.personality.tone}.
     Conversation instructions: ${convo_instructions}`.trim();
 
     const model = genAI.getGenerativeModel({ 
