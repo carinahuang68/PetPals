@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
-
+import './CustomizationForm.css';
 function CustomizationForm({ onCustomize }) {
   const [name, setName] = useState('');
-  const [personality, setPersonality] = useState('friendly');
+  const [personality, setPersonality] = useState({
+    description: '',
+    traits: [],
+  });
   const [role, setRole] = useState('friend');
   const [notificationPref, setNotificationPref] = useState('check-in');
   const [preview, setPreview] = useState(null);
+
+  const traitOptions = ['helpful', 'funny', 'adventurous', 'wise', 'energetic', 'calm',  'constructive'];
+
+  const handleTraitChange = (trait) => {
+    setPersonality(prev => ({
+      ...prev,
+      traits: prev.traits.includes(trait)
+        ? prev.traits.filter(t => t !== trait)
+        : [...prev.traits, trait]
+    }));
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -25,7 +39,11 @@ function CustomizationForm({ onCustomize }) {
       return;
     }
     if (!preview) {
-      alert('Please upload a photo of your doll!');
+      alert('Please upload a photo of your plushie!');
+      return;
+    }
+    if (!personality.description.trim()) {
+      alert('Please describe your companion\'s personality!');
       return;
     }
     onCustomize({ name, personality, role, notificationPref, photoUrl: preview });
@@ -45,7 +63,7 @@ function CustomizationForm({ onCustomize }) {
           />
           {preview && (
             <div className="preview">
-              <img src={preview} alt="Doll preview" style={{ maxWidth: '200px', marginTop: '10px' }} />
+              <img src={preview} alt="Plushie preview" style={{ maxWidth: '200px', marginTop: '10px' }} />
             </div>
           )}
         </div>
@@ -63,12 +81,29 @@ function CustomizationForm({ onCustomize }) {
 
         <div className="form-group">
           <label>Personality</label>
-          <select value={personality} onChange={(e) => setPersonality(e.target.value)}>
-            <option value="friendly">Friendly & Cheerful</option>
-            <option value="calm">Calm & Wise</option>
-            <option value="playful">Playful & Silly</option>
-            <option value="supportive">Supportive & Empathetic</option>
-          </select>
+          <textarea
+            placeholder="e.g., A warm and empathetic companion who loves to listen and provide comfort"
+            value={personality.description}
+            onChange={(e) => setPersonality(prev => ({ ...prev, description: e.target.value }))}
+            rows="4"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Personality Traits (select multiple)</label>
+          <div className="traits-container">
+            {traitOptions.map(trait => (
+              <label key={trait} className="trait-checkbox">
+                <input
+                  type="checkbox"
+                  checked={personality.traits.includes(trait)}
+                  onChange={() => handleTraitChange(trait)}
+                />
+                {trait.charAt(0).toUpperCase() + trait.slice(1)}
+              </label>
+            ))}
+          </div>
         </div>
 
         <div className="form-group">

@@ -14,7 +14,7 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <h1>🐾 PetPals - AI Companion</h1>
-        <p>Turn your doll into a personalized AI companion</p>
+        <p>Turn your plushie into a personalized AI companion</p>
       </header>
 
       <main className="app-main">
