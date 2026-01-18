@@ -15,25 +15,24 @@ const palSchema = new mongoose.Schema({
     },
     personality: {
         description: {
-            type: String // Ex. A warm, slightly sarcastic friend who checks in daily and uses casual language.
+            type: String,
+            required: true // Making this required since it's core to the AI
+        },
+        // NEW: Background field to store the origin story
+        background: {
+            type: String,
+            default: ""
         },
         traits: {
-            type: [String], // 
+            type: [String],
             default: []
         },
-        tone: {
+        // CHANGED: Renamed 'tone' to 'speakingStyle' to match your form
+        speakingStyle: {
             type: String,
-            default: "casual"
+            default: "Friendly & Casual"
         }
     },
-    // commands: {  // what they should do for me
-    //     type: [String], 
-    //     default: [] // "go to sleep at 9pm", "take meds"
-    // },
-    // notificationsEnabled: {
-    //     type: Boolean,
-    //     default: false
-    // },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
