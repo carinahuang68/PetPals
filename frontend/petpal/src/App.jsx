@@ -9,7 +9,7 @@ function App() {
   const handleCustomize = (customizationData) => {
     setCompanion(customizationData)
   }
-
+ 
   return (
     <div className="app-container">
       <header className="app-header">
