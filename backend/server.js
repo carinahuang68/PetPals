@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.json()); // allows us to accept JSON data in req.body
+app.use(express.json({ limit: '100mb' })); // allows us to accept JSON data in req.body
 
 app.use('/api/auth', authRoutes);
 app.use('/api/pals', palRoutes);
