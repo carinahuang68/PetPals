@@ -3,6 +3,7 @@ import express from 'express';
 import { connectDB } from './config/db.js';
 import palRoutes from './routes/pal.routes.js';
 import authRoutes from './routes/auth.js';
+import chatRoutes from './routes/chat.js'
 import cors from 'cors';
 import path from 'path';
 
@@ -14,6 +15,7 @@ app.use(express.json()); // allows us to accept JSON data in req.body
 
 app.use('/api/auth', authRoutes);
 app.use('/api/pals', palRoutes);
+app.use('/api/chat', chatRoutes);
 
 const __dirname = path.resolve();
 
