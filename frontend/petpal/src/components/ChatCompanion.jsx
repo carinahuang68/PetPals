@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
- 
+
 function ChatCompanion({ companion }) {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');

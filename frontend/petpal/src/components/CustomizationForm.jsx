@@ -17,7 +17,7 @@ function CustomizationForm({ onCustomize }) {
       reader.readAsDataURL(file);
     }
   };
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name.trim()) {
