@@ -36,7 +36,7 @@ function CustomizationForm({ onCustomize }) {
       <h2>Create Your AI Companion</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Upload Your Doll's Photo *</label>
+          <label>Upload Your Plushie's Photo *</label>
           <input 
             type="file" 
             accept="image/*" 
