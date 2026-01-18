@@ -83,7 +83,7 @@ function CustomizationForm({ onCustomize }) {
 
   return (
     <div className="customization-form">
-      <h2>Create Your AI Companion</h2>
+      <h2>Create Your Plushie Companion!</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Upload Your Plushie's Photo *</label>

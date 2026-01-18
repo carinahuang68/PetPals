@@ -138,6 +138,12 @@ export default function PalsList() {
                                     <span>Tone:</span>
                                     <span>{pal.personality?.tone}</span>
                                 </div>
+                                <button
+                                    className="update-pal-btn"
+                                    onClick={() => navigate(`/pals/${pal._id}/updatePal`)}
+                                >
+                                    ✏️ Update
+                                </button>
                             </div>
                         )}
 

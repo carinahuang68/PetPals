@@ -38,7 +38,7 @@
 
 .pal-card {
   position: relative;
-  background: white;
+  background: #FEFDED;
   border-radius: 16px;
   overflow: visible;
   box-shadow: 0 2px 8px rgba(236, 227, 227, 0.1);
@@ -116,6 +116,26 @@
 
     font-size: 0.85rem;
     color: #333;
+}
+
+.update-pal-btn {
+    margin-top: 10px;
+    width: 100%;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.update-pal-btn:hover {
+    opacity: 0.9;
 }
 
 /* Text layout */
