@@ -1,30 +1,32 @@
-const express = require('express');
-const cors = require('cors');
+// const express = require('express');
+import express from 'express';
+import { connectDB } from './config/db.js';
+import palRoutes from './routes/pal.route.js';
+import authRoutes from './routes/auth.js';
+import cors from 'cors';
+import path from 'path';
+
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // allows us to accept JSON data in req.body
 
-// Sample chat endpoint
-app.post('/api/chat', (req, res) => {
-  const { message, companionName } = req.body;
-  // Placeholder AI response - replace with actual AI service later
-  const responses = [
-    `That's interesting! I appreciate you sharing that with me.`,
-    `I'm here to listen. Tell me more!`,
-    `Thanks for chatting with me, ${companionName}!`,
-    `That sounds wonderful! How does that make you feel?`
-  ];
-  const response = responses[Math.floor(Math.random() * responses.length)];
-  res.json({ response });
-});
+app.use('/api/auth', authRoutes);
+app.use('/api/pals', palRoutes);
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'Backend is running!' });
-});
+const __dirname = path.resolve();
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, "/frontend/dist"))); //makes content of dist folder available to client via http requests
+    app.get("/{*splat}", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));    
+    })
+}
+
+
+app.listen(PORT, async () => {
+    console.log("Server started at http://localhost:" + PORT);
+    await connectDB();
+})
+
