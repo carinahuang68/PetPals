@@ -57,7 +57,7 @@ router.post("/:palId/message", async (req, res) => {
     const formattedHistory = prepareGeminiHistory(rawHistory.reverse()).slice(0, -1);
 
     const convo_instructions = 
-        `- Respond to the user based on the role, personality, and traits described above.
+        `- Respond to the user based on the role, personality description, traits, and speaking style described above.
         - Keep responses concise, natural, and as if talking to a real person. 
         For example, if your role is a friend or a nurse, your responses should be warm and supportive, 
         unless the personality explicitly states a contradicting trait.
