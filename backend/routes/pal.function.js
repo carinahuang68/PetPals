@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 import Pal from '../models/Pal.js';
 
 export const addNewPal = async (req, res) => {
+    console.log("add new pal");
     const pal = req.body; // user will send this data
 
-    if (!pal.name || !pal.image || !palData.personality?.description) {
+    if (!pal.name || !pal.image || !pal.personality?.description) {
         return res.status(400).json({success: false, message: "Please provide all fields"});
     }
 
@@ -12,6 +13,7 @@ export const addNewPal = async (req, res) => {
 
     try {
         await newPal.save();
+        console.log("created pal");
         res.status(201).json(newPal);
     } catch (error) {
         console.error("Error in create pal: ", error.message);
@@ -29,9 +31,9 @@ export const deletePal = async (req, res) => {
         return;
     }
 
-    if (pal.createdBy.toString() !== req.user._id.toString()) {
-        return res.status(401).json({success: false, message: "Not authorized to delete this pal"});
-    }
+    // if (pal.createdBy.toString() !== req.user._id.toString()) {
+    //     return res.status(401).json({success: false, message: "Not authorized to delete this pal"});
+    // }
 
     try {
         await Pal.findByIdAndDelete(id).then(doc => console.log("Deleted pal: ", doc));

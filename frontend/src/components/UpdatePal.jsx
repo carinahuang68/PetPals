@@ -33,8 +33,9 @@ export default function UpdatePal() {
                     name: pal.name || "",
                     role: pal.role || "",
                     personality: {
+                        background: pal.personality?.background || "",
                         description: pal.personality?.description || "",
-                        tone: pal.personality?.tone || "",
+                        speakingStyle: pal.personality?.speakingStyle || "",
                         traits: pal.personality?.traits || []
                     }
                 });
@@ -87,7 +88,7 @@ export default function UpdatePal() {
 
         try {
             const res = await fetch(`http://localhost:3000/api/pals/${id}`, {
-                method: "PATCH",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -131,6 +132,15 @@ export default function UpdatePal() {
                 </label>
 
                 <label>
+                    Background
+                    <textarea
+                        name="personality.background"
+                        value={formData.personality.background}
+                        onChange={handleChange}
+                    />
+                </label>
+
+                <label>
                     Personality Description
                     <textarea
                         name="personality.description"
@@ -149,7 +159,7 @@ export default function UpdatePal() {
                 </label>
 
                 <label>
-                    Tone
+                    Speaking Style
                     <input
                         name="personality.speakingStyle"
                         value={formData.personality.speakingStyle}
