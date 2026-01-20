@@ -21,7 +21,7 @@ In the backend terminal, run:
 ```bash
 npm run dev
 ```
-You should see: `Server is running on http://localhost:5000`
+You should see: `Server is running on http://localhost:3000`
 
 ### Step 4: Start the Frontend Dev Server
 In the frontend terminal, run:
@@ -119,8 +119,6 @@ Make sure the backend is running on `http://localhost:5000` and frontend can rea
 4. **Notifications**: Implement scheduled notifications/check-ins
 5. **Voice Chat**: Add text-to-speech and speech-to-text
 6. **User Accounts**: Add authentication and user profiles
-7. **Companion Memory**: Store chat history and customize responses based on conversation
-
 ---
 
 Enjoy building! 🚀
