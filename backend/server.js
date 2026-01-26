@@ -28,12 +28,9 @@ app.use('/api/chat', chatRoutes);
 
 const __dirname = path.resolve();
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, "/frontend/dist"))); //makes content of dist folder available to client via http requests
-    app.get("/{*splat}", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-    })
-}
+app.get("/", (req, res) => {
+    res.json({ message: "PetPals API is running" });
+});
 
 
 app.listen(PORT, "0.0.0.0", async () => {
