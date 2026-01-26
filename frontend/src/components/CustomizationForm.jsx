@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import API_URL from '../config/api';
 import './CustomizationForm.css';
 import Combobox from './Combobox';
 
@@ -100,7 +101,7 @@ function CustomizationForm({ onCustomize }) {
                 role,
             };
 
-            const response = await fetch('http://127.0.0.1:3000/api/pals', {
+            const response = await fetch(`${API_URL}/api/pals`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

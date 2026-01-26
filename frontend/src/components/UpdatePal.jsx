@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import API_URL from "../config/api";
 import "./CustomizationForm.css";
 import Combobox from "./Combobox";
 
@@ -51,7 +52,7 @@ export default function UpdatePal() {
     useEffect(() => {
         const fetchPal = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/api/pals/${id}`, {
+                const res = await fetch(`${API_URL}/api/pals/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -131,7 +132,7 @@ export default function UpdatePal() {
         setSubmitting(true);
 
         try {
-            const res = await fetch(`http://localhost:3000/api/pals/${id}`, {
+            const res = await fetch(`${API_URL}/api/pals/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

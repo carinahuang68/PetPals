@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import API_URL from '../config/api';
 import './PalsList.css';
 
 export default function PalsList() {
@@ -21,7 +22,7 @@ export default function PalsList() {
     const fetchPals = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:3000/api/pals', {
+            const response = await fetch(`${API_URL}/api/pals`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ export default function PalsList() {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`http://localhost:3000/api/pals/${palId}`, {
+            const response = await fetch(`${API_URL}/api/pals/${palId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

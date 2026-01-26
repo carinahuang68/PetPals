@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import API_URL from '../config/api';
 import './ChatPage.css';
 
 export default function ChatPage() {
@@ -32,7 +33,7 @@ export default function ChatPage() {
 
     const fetchPal = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/pals/${palId}`, {
+            const response = await fetch(`${API_URL}/api/pals/${palId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -51,7 +52,7 @@ export default function ChatPage() {
         if (!window.confirm('Are you sure you want to delete this pal?')) return;
 
         try {
-            const response = await fetch(`http://localhost:3000/api/pals/${palId}`, {
+            const response = await fetch(`${API_URL}/api/pals/${palId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -74,7 +75,7 @@ export default function ChatPage() {
 
     const fetchHistory = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/chat/${palId}/history`);
+            const response = await fetch(`${API_URL}/api/chat/${palId}/history`);
             if (!response.ok) throw new Error('Failed to fetch history');
             const history = await response.json();
             setMessages(history);
@@ -94,7 +95,7 @@ export default function ChatPage() {
         setError('');
 
         try {
-            const response = await fetch(`http://localhost:3000/api/chat/${palId}/message`, {
+            const response = await fetch(`${API_URL}/api/chat/${palId}/message`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userMessage })
