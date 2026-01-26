@@ -305,9 +305,11 @@
     width: 100%;
 }
 
-.chat-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+@media (min-width: 768px) {
+    .chat-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
 }
 
 @media (max-width: 768px) {
