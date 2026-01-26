@@ -135,7 +135,8 @@ export default function UpdatePal() {
             const res = await fetch(`${API_URL}/api/pals/${id}`, {
                 method: "PUT",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(formData)
             });

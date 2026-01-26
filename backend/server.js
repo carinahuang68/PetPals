@@ -15,7 +15,7 @@ app.use(express.static("public"));
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production'
         ? process.env.FRONTEND_URL || '*'
-        : ['http://localhost:5173', 'http://127.0.0.1:5173'],
+        : true, // true allows the origin of the request, which is fine for local dev
     credentials: true
 };
 
