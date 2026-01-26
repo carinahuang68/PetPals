@@ -7,20 +7,82 @@
     background: #FFFAD6;
 }
 
-.pals-container h2 {
-    font-size: 2rem;
+.pals-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 30px;
-    color: #333;
-    text-align: center;
+    padding: 0 10px;
 }
 
-.error-message {
-    color: #d32f2f;
-    background-color: #ffebee;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    text-align: center;
+.pals-page-title {
+    font-size: 2rem;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.welcome-text {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0;
+}
+
+.logout-link {
+    color: #6672a4;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.logout-link:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+.mobile-logout-container {
+    display: none;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.add-pal-btn {
+    background: #ec407a;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+    transition: all 0.2s;
+}
+
+.add-pal-btn:hover {
+    background: #e91e63;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.4);
+}
+
+.logout-btn {
+    background: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    background: #d5d5d5;
+    transform: translateY(-2px);
 }
 
 .no-pals {
@@ -251,6 +313,64 @@
 @media (max-width: 768px) {
     .pals-container {
         padding: 20px 15px;
+    }
+
+    /* Hide welcome text on mobile */
+    .welcome-text {
+        display: none;
+    }
+
+    /* Restructure header for mobile */
+    .pals-header-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding: 0;
+    }
+
+    .pals-page-title {
+        text-align: center;
+    }
+
+    /* Move Add Pal button below title */
+    .header-actions {
+        order: 2;
+        width: 100%;
+    }
+
+    .add-pal-btn {
+        width: 100%;
+    }
+
+    /* Show mobile logout button */
+    .mobile-logout-container {
+        display: block;
+        margin-top: 30px;
+        padding-top: 20px;
+        /* border-top: 1px solid #e0e0e0; */
+    }
+
+    .mobile-logout-btn {
+        width: 100%;
+        background: #e0e0e0;
+        color: #333;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .mobile-logout-btn:hover {
+        background: #d5d5d5;
+    }
+
+    .pals-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
     .pals-grid {

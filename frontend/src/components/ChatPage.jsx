@@ -1,10 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 import './ChatPage.css';
 
 export default function ChatPage() {
     const { palId } = useParams();
     const navigate = useNavigate();
+    const { token } = useContext(AuthContext);
     const [pal, setPal] = useState(null);
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
@@ -14,9 +16,11 @@ export default function ChatPage() {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        fetchPal();
-        fetchHistory();
-    }, [palId]);
+        if (token) {
+            fetchPal();
+            fetchHistory();
+        }
+    }, [palId, token]);
 
     useEffect(() => {
         scrollToBottom();
@@ -28,7 +32,11 @@ export default function ChatPage() {
 
     const fetchPal = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/pals/${palId}`);
+            const response = await fetch(`http://localhost:3000/api/pals/${palId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             if (!response.ok) throw new Error('Failed to fetch pal');
             const data = await response.json();
             setPal(data);
@@ -45,6 +53,9 @@ export default function ChatPage() {
         try {
             const response = await fetch(`http://localhost:3000/api/pals/${palId}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
             if (!response.ok) throw new Error('Failed to delete pal');

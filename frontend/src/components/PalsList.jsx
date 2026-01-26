@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 import './PalsList.css';
 
 export default function PalsList() {
+    const { token, logout, user } = useContext(AuthContext);
     const [pals, setPals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -11,15 +13,20 @@ export default function PalsList() {
     const [infoPalId, setInfoPalId] = useState(null);
 
     useEffect(() => {
-        fetchPals();
-    }, []);
+        if (token) {
+            fetchPals();
+        }
+    }, [token]);
 
     const fetchPals = async () => {
         try {
             setLoading(true);
             const response = await fetch('http://localhost:3000/api/pals', {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
             if (!response.ok) {
@@ -51,9 +58,8 @@ export default function PalsList() {
             const response = await fetch(`http://localhost:3000/api/pals/${palId}`, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
-                    // include Authorization header here if you use JWTs
-                    // 'Authorization': `Bearer ${token}`
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
             });
 
@@ -76,7 +82,20 @@ export default function PalsList() {
 
     return (
         <div className="pals-container">
-            {/* <h2>Your PetPals</h2> */}
+            <div className="pals-header-row">
+                <div>
+                    <h2 className="pals-page-title">Your PetPals</h2>
+                    {user && <p className="welcome-text">Welcome back, {user.username}! 👋 <a href="#" className="logout-link" onClick={(e) => { e.preventDefault(); logout(); navigate('/'); }}>Logout</a></p>}
+                </div>
+                <div className="header-actions">
+                    <button
+                        className="add-pal-btn"
+                        onClick={() => navigate('/customize')}
+                    >
+                        + Add Pal
+                    </button>
+                </div>
+            </div>
 
             {error && <p className="error-message">{error}</p>}
 
@@ -232,6 +251,19 @@ export default function PalsList() {
                     </div>
                 </div>
             )}
+
+            {/* Mobile Logout Button */}
+            <div className="mobile-logout-container">
+                <button
+                    className="mobile-logout-btn"
+                    onClick={() => {
+                        logout();
+                        navigate('/');
+                    }}
+                >
+                    Logout
+                </button>
+            </div>
         </div>
     );
 

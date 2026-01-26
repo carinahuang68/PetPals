@@ -114,14 +114,43 @@ body {
     z-index: 100;
 }
 
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .app-header h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .app-header p {
     font-size: 1.1rem;
     opacity: 0.9;
+    text-align: center;
+}
+
+.header-logout-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.header-logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
 }
 
 .app-main {
@@ -129,14 +158,6 @@ body {
     padding: 0;
     /* REMOVED PADDING FOR FULL WIDTH */
     width: 100%;
-}
-
-.setup-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
-    /* Added padding back for form */
 }
 
 /* ... existing styles ... */
@@ -243,8 +264,8 @@ body {
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: 600;
-    margin-bottom: 1rem;
     transition: all 0.3s;
+    margin: 10px;
 }
 
 .back-btn:hover {
