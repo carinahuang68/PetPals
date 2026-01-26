@@ -1,21 +1,94 @@
 .traits-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
 }
 
 .trait-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
 }
 
 .trait-checkbox input {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .customization-form {
-  background-color: #FFFAD6;
+    background-color: #FFFAD6; 
+    max-width: 800px !important;
+    margin: 25px auto 80px !important; /* top | auto | bottom */
+    padding: 24px !important;
+}
+
+@media (max-width: 768px) {
+    .customization-form {
+        margin: 0 auto !important; /* smaller but still present */
+        padding: 20px !important;
+    }
+}
+
+.custom-trait-input {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.custom-trait-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-trait-btn {
+    padding: 8px 12px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-trait-btn:hover {
+    background-color: #ddd;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-btn,
+.cancel-btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    flex: 1;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.cancel-btn {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background-color: #d5d5d5;
 }

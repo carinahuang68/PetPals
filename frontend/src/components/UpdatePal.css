@@ -1,8 +1,3 @@
-.update-pal-container {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 20px;
-}
 
 .update-pal-form label {
     display: block;
@@ -39,4 +34,16 @@
 
 .cancel-btn {
     background: #eee;
+    color: #333;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transition: all 0.2s;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }

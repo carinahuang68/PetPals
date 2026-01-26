@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+import API_URL from '../config/api';
 import './CustomizationForm.css';
+import Combobox from './Combobox';
 
 function CustomizationForm({ onCustomize }) {
+    const { token } = useContext(AuthContext);
     const [name, setName] = useState('');
     // ... existing state
     const [personality, setPersonality] = useState({
         description: '',
         background: '', // New field
         traits: [],
-        speakingStyle: 'Friendly', // New field
+        speakingStyle: 'Friendly & Casual', // New field
     });
 
     const speakingStyleOptions = [
@@ -21,6 +25,15 @@ function CustomizationForm({ onCustomize }) {
         "Wise & Calm",
         "Poetic & Flowery"
     ];
+
+    const roleOptions = [
+        "friend",
+        "therapist",
+        "doctor",
+        "mentor",
+        "teaching assistant"
+    ];
+
     const [role, setRole] = useState('friend');
     // const [notificationPref, setNotificationPref] = useState('check-in');
     const [preview, setPreview] = useState(null);
@@ -31,6 +44,8 @@ function CustomizationForm({ onCustomize }) {
 
 
 
+    const [customTrait, setCustomTrait] = useState('');
+
     const handleTraitChange = (trait) => {
         setPersonality(prev => ({
             ...prev,
@@ -38,6 +53,17 @@ function CustomizationForm({ onCustomize }) {
                 ? prev.traits.filter(t => t !== trait)
                 : [...prev.traits, trait]
         }));
+    };
+
+    const addCustomTrait = (e) => {
+        e.preventDefault();
+        if (customTrait.trim() && !personality.traits.includes(customTrait.trim())) {
+            setPersonality(prev => ({
+                ...prev,
+                traits: [...prev.traits, customTrait.trim()]
+            }));
+            setCustomTrait('');
+        }
     };
 
     const handleFileChange = (e) => {
@@ -75,9 +101,12 @@ function CustomizationForm({ onCustomize }) {
                 role,
             };
 
-            const response = await fetch('http://127.0.0.1:3000/api/pals', {
+            const response = await fetch(`${API_URL}/api/pals`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify(palData)
             });
 
@@ -128,18 +157,12 @@ function CustomizationForm({ onCustomize }) {
 
                 <div className="form-group">
                     <label>Role</label>
-                    <input
-                        list="roles"
+                    <Combobox
                         value={role}
-                        onChange={(e) => setRole(e.target.value)}
+                        onChange={setRole}
+                        options={roleOptions}
                         placeholder="Choose or type your role"
                     />
-                    <datalist id="roles">
-                        <option value="friend" />
-                        <option value="therapist" />
-                        <option value="mentor" />
-                        <option value="adventure-buddy" />
-                    </datalist>
                 </div>
 
 
@@ -192,39 +215,57 @@ function CustomizationForm({ onCustomize }) {
                                 {trait.charAt(0).toUpperCase() + trait.slice(1)}
                             </label>
                         ))}
+                        {/* Display added custom traits as checked boxes too or just chips?
+                             User said "allow user to type their own".
+                             Let's show existing user traits that ARE NOT in options as well, so they can uncheck them.
+                          */}
+                        {personality.traits.filter(t => !traitOptions.includes(t)).map(trait => (
+                            <label key={trait} className="trait-checkbox">
+                                <input
+                                    type="checkbox"
+                                    checked={true}
+                                    onChange={() => handleTraitChange(trait)}
+                                />
+                                {trait}
+                            </label>
+                        ))}
+                    </div>
+
+                    <div className="custom-trait-input">
+                        <input
+                            type="text"
+                            placeholder="Type a custom trait..."
+                            value={customTrait}
+                            onChange={(e) => setCustomTrait(e.target.value)}
+                            onKeyDown={(e) => { if (e.key === 'Enter') addCustomTrait(e); }}
+                        />
+                        <button type="button" onClick={addCustomTrait} className="add-trait-btn">+</button>
                     </div>
                 </div>
 
-                {/* <div className="form-group">
-          <label>Role</label>
-          <select value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="friend">Friend</option>
-            <option value="therapist">Therapist</option>
-            <option value="mentor">Mentor</option>
-            <option value="adventure-buddy">Adventure Buddy</option>
-          </select>
-        </div> */}
-
-                {/* NEW: Speaking Style (Dropdown + Custom Type) */}
                 <div className="form-group">
                     <label>Speaking Style</label>
-                    <input
-                        list="speaking-styles"
+                    <Combobox
                         value={personality.speakingStyle}
-                        onChange={(e) => setPersonality(prev => ({ ...prev, speakingStyle: e.target.value }))}
-                        placeholder="Select style or type your own (e.g., Pirate Talk)"
+                        onChange={(val) => setPersonality(prev => ({ ...prev, speakingStyle: val }))}
+                        options={speakingStyleOptions}
+                        placeholder="Select style or type your own"
                     />
-                    <datalist id="speaking-styles">
-                        {speakingStyleOptions.map(style => (
-                            <option key={style} value={style} />
-                        ))}
-                    </datalist>
                 </div>
 
 
-                <button type="submit" className="submit-btn" disabled={loading}>
-                    {loading ? 'Creating Companion...' : 'Create Companion'}
-                </button>
+                <div className="form-actions">
+                    <button
+                        type="button"
+                        className="cancel-btn"
+                        onClick={() => navigate('/pals')}
+                    >
+                        Cancel
+                    </button>
+                    <button type="submit" className="submit-btn" disabled={loading}>
+                        {loading ? 'Creating Companion...' : 'Create'}
+                    </button>
+                </div>
             </form>
         </div>
     );

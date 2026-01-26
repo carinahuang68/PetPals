@@ -1,0 +1,21 @@
+# Render Configuration for Backend
+services:
+  - type: web
+    name: petpals-backend
+    env: node
+    rootDir: backend
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 3000

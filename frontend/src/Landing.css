@@ -1,62 +1,72 @@
 .landing-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  padding: 20px;
-  background-color: #FFFAD6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px 20px 80px 20px;
+    background-color: #FFFAD6;
+}
 
+@media (max-width: 768px) {
+    .landing-container {
+        padding-bottom: 20px;
+    }
 }
 
 .landing-content {
-  text-align: center;
-  max-width: 600px;
+    text-align: center;
+    max-width: 600px;
 }
 
 .landing-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  color: #333;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #333;
 }
 
 .tagline {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 50px;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 50px;
 }
 
 .make-petpal-btn {
-  padding: 20px 60px;
-  font-size: 1.3rem;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #9995E2 0%, #7A75D1 100%);
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    padding: 20px 60px;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 .make-petpal-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
 }
 
 .landing-image {
-    width:800px;        /* adjust size here */
+    width: 800px;
+    /* adjust size here */
     max-width: 100%;
-    margin: 20px auto;  /* centers + spacing */
-    display: block;     /* important for margin auto */
-  }
-  
-  .description-textarea {
-    width: 100%;        /* full width of the container */
+    margin: 20px auto;
+    /* centers + spacing */
+    display: block;
+    /* important for margin auto */
+}
+
+.description-textarea {
+    width: 100%;
+    /* full width of the container */
     padding: 10px;
     font-size: 1rem;
     border-radius: 8px;
     border: 1px solid #ccc;
-    resize: vertical;   /* allows vertical resizing only */
-    box-sizing: border-box; /* ensures padding is included in width */
-  }
-  
+    resize: vertical;
+    /* allows vertical resizing only */
+    box-sizing: border-box;
+    /* ensures padding is included in width */
+}
