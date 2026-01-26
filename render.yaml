@@ -3,6 +3,7 @@ services:
   - type: web
     name: petpals-backend
     env: node
+    rootDir: backend
     region: oregon
     plan: free
     buildCommand: npm install
