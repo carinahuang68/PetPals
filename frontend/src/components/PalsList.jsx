@@ -76,7 +76,7 @@ export default function PalsList() {
 
     return (
     <div className="pals-container">
-        <h2>Your PetPals</h2>
+        {/* <h2>Your PetPals</h2> */}
 
         {error && <p className="error-message">{error}</p>}
 
@@ -111,21 +111,21 @@ export default function PalsList() {
                                 className="pal-info-popover"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                <strong>{pal.name}</strong>
+                                <strong >{pal.name}</strong>
 
                                 <div className="popover-row">
-                                    <span>Role:   {pal.role}</span>
+                                    <span><b>Role: </b> {pal.role}</span>
                                 </div>
 
                                 {pal.personality?.description && (
                                     <p className="popover-description">
-                                        Description: {pal.personality.description}
+                                        <b>Description: </b>{pal.personality.description}
                                     </p>
                                 )}
 
                                 {pal.personality?.traits?.length > 0 && (
                                     <div className="popover-traits">
-                                        <p>Traits: </p>
+                                        <p><b>Traits: </b></p>
                                         {pal.personality.traits.map((trait, i) => (
                                             <span key={i} className="trait-chip">
                                                  {trait}
@@ -135,7 +135,7 @@ export default function PalsList() {
                                 )}
 
                                 <div className="popover-row">
-                                    <span>Speaking Style:</span>
+                                    <span><b>Speaking Style:</b></span>
                                     <span>{pal.personality?.speakingStyle}</span>
                                 </div>
                                 <button

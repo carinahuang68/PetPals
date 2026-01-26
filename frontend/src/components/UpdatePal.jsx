@@ -168,7 +168,6 @@ export default function UpdatePal() {
                 </label>
 
                 <div className="form-actions">
-                    <button type="submit">Save Changes</button>
                     <button
                         type="button"
                         className="cancel-btn"
@@ -176,6 +175,7 @@ export default function UpdatePal() {
                     >
                         Cancel
                     </button>
+                    <button type="submit" className="save-btn">Save</button>
                 </div>
             </form>
         </div>

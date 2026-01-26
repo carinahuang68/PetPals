@@ -10,7 +10,7 @@ export default function Landing() {
         <h1>🐾 Welcome to PetPals</h1>
         <img src="/petpals1.png" alt="" className='landing-image'/>
         {/* <img src="/petpals.png" alt="PetPals logo" /> */}
-        <p className="tagline">Turn your plushie into a personalized AI companion</p>
+        <p className="tagline">Turn your plushies into personalized AI companions</p>
         
         <button 
           className="cta-btn make-petpal-btn"
