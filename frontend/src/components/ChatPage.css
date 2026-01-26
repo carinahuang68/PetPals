@@ -274,3 +274,39 @@
         margin-right: 8px;
     }
 }
+
+/* Chat Header Actions */
+.chat-actions {
+    position: relative;
+    margin-left: auto;
+    /* Push to right */
+}
+
+.info-pal-btn-chat {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0 10px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.info-pal-btn-chat:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Reusing popover styles but positioning for chat */
+.chat-popover {
+    top: 40px;
+    right: 0;
+    width: 300px;
+    /* Ensure it's above other elements */
+    z-index: 1001;
+}

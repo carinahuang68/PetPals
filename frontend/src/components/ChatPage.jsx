@@ -10,6 +10,7 @@ export default function ChatPage() {
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [showInfo, setShowInfo] = useState(false);
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
@@ -37,6 +38,28 @@ export default function ChatPage() {
         }
     };
 
+
+    const handleDelete = async () => {
+        if (!window.confirm('Are you sure you want to delete this pal?')) return;
+
+        try {
+            const response = await fetch(`http://localhost:3000/api/pals/${palId}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) throw new Error('Failed to delete pal');
+            navigate('/pals');
+        } catch (err) {
+            console.error('Error deleting pal:', err);
+            alert('Failed to delete pal');
+        }
+    };
+
+    useEffect(() => {
+        const handleClickOutside = () => setShowInfo(false);
+        window.addEventListener('click', handleClickOutside);
+        return () => window.removeEventListener('click', handleClickOutside);
+    }, []);
 
     const fetchHistory = async () => {
         try {
@@ -96,6 +119,65 @@ export default function ChatPage() {
                         <h2>{pal.name}</h2>
                         <p className="pal-role">{pal.role}</p>
                     </div>
+                </div>
+
+                <div className="chat-actions">
+                    <button
+                        className="info-pal-btn-chat"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setShowInfo(!showInfo);
+                        }}
+                    >
+                        ⋮
+                    </button>
+                    {showInfo && (
+                        <div
+                            className="pal-info-popover chat-popover"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <strong>{pal.name}</strong>
+
+                            <div className="popover-row">
+                                <span><b>Role: </b> {pal.role}</span>
+                            </div>
+
+                            {pal.personality?.description && (
+                                <p className="popover-description">
+                                    <b>Description: </b>{pal.personality.description}
+                                </p>
+                            )}
+
+                            {pal.personality?.traits?.length > 0 && (
+                                <div className="popover-traits">
+                                    <p><b>Traits: </b></p>
+                                    {pal.personality.traits.map((trait, i) => (
+                                        <span key={i} className="trait-chip">
+                                            {trait}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+
+                            <div className="popover-row">
+                                <span><b>Speaking Style:</b></span>
+                                <span>{pal.personality?.speakingStyle}</span>
+                            </div>
+
+                            <button
+                                className="update-pal-btn"
+                                onClick={() => navigate(`/pals/${pal._id}/updatePal`)}
+                            >
+                                ✏️ Update
+                            </button>
+                            <button
+                                className="delete-pal-btn-popover"
+                                onClick={handleDelete}
+                            >
+                                🗑️ Delete
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
 
